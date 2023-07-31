@@ -1,14 +1,16 @@
 use strict;
 use warnings;
 use FindBin qw($Bin);
-use Test::More tests => 2;
+use Test2::V0;
 
-use Dancer::FileUtils 'path';
-use Dancer::Template::Mason;
+use Dancer2::FileUtils 'path';
+use Dancer2::Template::Mason;
+
+plan 2;
 
 my $engine;
-eval { $engine = Dancer::Template::Mason->new };
-is $@, '', "Dancer::Template::Mason engine created";
+eval { $engine = Dancer2::Template::Mason->new };
+is $@, '', "Dancer2::Template::Mason engine created";
 
 my $template = path($Bin, 'views', 'index');
 my $result = $engine->render(

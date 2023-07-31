@@ -6,16 +6,11 @@ use warnings;
 
 use HTML::Mason::Interp;
 
-require Dancer;
-
 use Moo;
 
 require FindBin;
-require Dancer::Config;
 
-Dancer::Config->import( 'setting' );
-
-extends 'Dancer::Template::Abstract';
+with 'Dancer2::Core::Role::Template';
 
 has _engine => (
     is => 'ro',
@@ -33,14 +28,16 @@ has _root_dir => (
     is => 'rw',
     lazy => 1,
     default => sub {
-        $_[0]->config->{comp_root} ||= 
-            setting( 'views' ) || $FindBin::Bin . '/views';
+        my $self = shift;
+
+        $self->config->{comp_root} ||= 
+            $self->settings->{views} || $FindBin::Bin . '/views';
     },
 );
 
-sub _build_name { 'Dancer::Template::Mason' }
+sub _build_name { 'Dancer2::Template::Mason' }
 
-has default_tmpl_ext => (
+has '+default_tmpl_ext' => (
     is => 'ro',
     lazy => 1,
     default => sub {
@@ -95,7 +92,7 @@ Then, on C<views/foo.mason>:
 This class is an interface between Dancer's template engine abstraction layer
 and the L<HTML::Mason> templating system. 
 For templates using L<Mason> version
-2.x, what you want is L<Dancer::Template::Mason2>.
+2.x, what you want is L<Dancer2::Template::Mason2>.
 
 In order to use this engine, set the template to 'mason' in the configuration
 file:
@@ -116,8 +113,10 @@ or, if it's undefined, to the C</views> subdirectory of the application.
 
 =head1 SEE ALSO
 
-L<Dancer>, L<HTML::Mason>.
+L<Dancer2>, L<HTML::Mason>.
 
-For Mason v2, see L<Mason> and L<Dancer::Template::Mason2>.
+For Mason v2, see L<Mason> and L<Dancer2::Template::Mason2>.
+
+And, of course, there is the original L<Dancer::Template::Mason>.
 
 =cut
