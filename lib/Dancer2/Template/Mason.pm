@@ -1,5 +1,5 @@
-package Dancer::Template::Mason;
-# ABSTRACT: Mason wrapper for Dancer
+package Dancer2::Template::Mason;
+# ABSTRACT: Mason wrapper for Dancer2
 
 use strict;
 use warnings;
