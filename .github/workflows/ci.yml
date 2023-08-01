@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  push:
+    branches: [ 'releases' ]
   pull_request:
     branches: '**'
 
@@ -26,10 +28,9 @@ jobs:
       - name: Install dependencies
         run: |
             perl -v
-            dzil authordeps --missing | cpanm --notest
-            dzil listdeps --author --missing | cpanm --notest
+            cpanm --installdeps .
 
       - name: Regular tests
         run: |
-            dzil test --author --release
+            prove -l t
 
