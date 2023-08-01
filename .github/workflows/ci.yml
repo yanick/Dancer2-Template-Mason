@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+    branches: '**'
+
+jobs:
+  build-in-container:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        perl-version:
+          - '5.32'
+          - '5.30'
+          - '5.20'
+
+    container:
+      image: perldocker/perl-tester:${{ matrix.perl-version }}     # https://hub.docker.com/r/perldocker/perl-tester
+
+    name: Build on Linux with Perl ${{ matrix.perl-version }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+            perl -v
+            dzil authordeps --missing | cpanm --notest
+            dzil listdeps --author --missing | cpanm --notest
+
+      - name: Regular tests
+        run: |
+            dzil test --author --release
+
