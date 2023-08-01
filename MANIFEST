@@ -20,4 +20,6 @@ t/00-compile.t
 t/00-report-prereqs.dd
 t/00-report-prereqs.t
 t/01-basic.t
+t/views/index
+t/views/index.m
 xt/release/unused-vars.t
