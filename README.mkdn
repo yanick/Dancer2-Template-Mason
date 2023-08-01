@@ -1,0 +1,81 @@
+# NAME
+
+Dancer2::Template::Mason - Mason wrapper for Dancer2
+
+# VERSION
+
+version 0.1.0
+
+# SYNOPSIS
+
+```perl
+ # in 'config.yml'
+ template: 'mason'
+
+ # in the app
+
+ get '/foo', sub {
+   template 'foo' => {
+       title => 'bar'
+   };
+ };
+```
+
+Then, on `views/foo.mason`:
+
+```
+<%args>
+$title
+</%args>
+
+<h1><% $title %></h1>
+
+<p>Mason says hi!</p>
+```
+
+# DESCRIPTION
+
+This class is an interface between Dancer's template engine abstraction layer
+and the [HTML::Mason](https://metacpan.org/pod/HTML%3A%3AMason) templating system. 
+For templates using [Mason](https://metacpan.org/pod/Mason) version
+2.x, what you want is [Dancer2::Template::Mason2](https://metacpan.org/pod/Dancer2%3A%3ATemplate%3A%3AMason2).
+
+In order to use this engine, set the template to 'mason' in the configuration
+file:
+
+```
+template: mason
+```
+
+# HTML::Mason::Interp CONFIGURATION
+
+Parameters can also be passed to the [HTML::Mason::Interp](https://metacpan.org/pod/HTML%3A%3AMason%3A%3AInterp) interpreter via
+the configuration file, like so:
+
+```
+engines:
+    mason:
+        default_escape_flags: ['h']
+```
+
+If unspecified, `comp_root` defaults to the `views` configuration setting
+or, if it's undefined, to the `/views` subdirectory of the application.
+
+# SEE ALSO
+
+[Dancer2](https://metacpan.org/pod/Dancer2), [HTML::Mason](https://metacpan.org/pod/HTML%3A%3AMason).
+
+For Mason v2, see [Mason](https://metacpan.org/pod/Mason) and [Dancer2::Template::Mason2](https://metacpan.org/pod/Dancer2%3A%3ATemplate%3A%3AMason2).
+
+And, of course, there is the original [Dancer::Template::Mason](https://metacpan.org/pod/Dancer%3A%3ATemplate%3A%3AMason).
+
+# AUTHOR
+
+Yanick Champoux <yanick@cpan.org> [![endorse](http://api.coderwall.com/yanick/endorsecount.png)](http://coderwall.com/yanick)
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2023 by Yanick Champoux.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

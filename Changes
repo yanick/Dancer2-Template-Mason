@@ -1,16 +1,8 @@
 Revision history for Dancer2-Template-Mason
 
-{{$NEXT}}
- [API CHANGES]
-
- [BUG FIXES]
-
- [DOCUMENTATION]
-
+0.1.0 2023-08-01
  [ENHANCEMENTS]
  - Initial release, based on Dancer-Template-Mason.
 
- [NEW FEATURES]
-
  [STATISTICS]
-
+ - code churn: 2 files changed, 3 insertions(+)
