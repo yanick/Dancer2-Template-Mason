@@ -1,6 +1,7 @@
 package Dancer2::Template::Mason;
+our $AUTHORITY = 'cpan:YANICK';
 # ABSTRACT: Mason wrapper for Dancer2
-
+$Dancer2::Template::Mason::VERSION = '0.1.1';
 use strict;
 use warnings;
 
@@ -59,9 +60,20 @@ sub render {
 }
 
 1;
+
 __END__
 
 =pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Dancer2::Template::Mason - Mason wrapper for Dancer2
+
+=head1 VERSION
+
+version 0.1.1
 
 =head1 SYNOPSIS
 
@@ -85,7 +97,6 @@ Then, on C<views/foo.mason>:
     <h1><% $title %></h1>
 
     <p>Mason says hi!</p>
-
 
 =head1 DESCRIPTION
 
@@ -161,5 +172,16 @@ L<Dancer2>, L<HTML::Mason>.
 For Mason v2, see L<Mason> and L<Dancer2::Template::Mason2>.
 
 And, of course, there is the original L<Dancer::Template::Mason>.
+
+=head1 AUTHOR
+
+Yanick Champoux <yanick@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2023 by Yanick Champoux.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
