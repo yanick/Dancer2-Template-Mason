@@ -6,6 +6,7 @@ Revision history for Dancer2-Template-Mason
  [BUG FIXES]
 
  [DOCUMENTATION]
+ - Document how to deal with Mason caching configuration. (#3, cromedome++)
 
  [ENHANCEMENTS]
 
