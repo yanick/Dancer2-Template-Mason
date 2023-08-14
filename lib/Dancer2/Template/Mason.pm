@@ -111,6 +111,49 @@ the configuration file, like so:
 If unspecified, C<comp_root> defaults to the C<views> configuration setting
 or, if it's undefined, to the C</views> subdirectory of the application.
 
+=head2 Notes on Mason Caching and Performance
+
+To improve performance of your templates, Mason creates a long-term cache on
+disk. This is great in production, where you want to squeak every ounce of
+performance out of your application, but in development, it can be a pain
+to constantly clear the cache. And when developing, it's not always clear
+where Mason even stores the cache!
+
+For development, we recommend disabling the Mason cache. In your
+F<environments/development.yml> file, you'd put the following:
+
+    template: "mason"
+    engines:
+      template:
+        mason:
+          use_object_files: 0
+          static_source: 0
+
+(static_source is also a potential performance enhancing setting.
+See L<the Mason docs|https://metacpan.org/dist/HTML-Mason/view/lib/HTML/Mason/Admin.pod#Static-Source-Mode>
+for more details)
+
+In production (F<environments/production.yml>), recommended settings are:
+
+    template: "mason"
+    engines:
+      template:
+        mason:
+          extension: m
+          data_dir: "/path/to/your/app/var/"
+          use_object_files: 1
+          static_source: 1
+
+C<data_dir> tells Mason where to store its long-term cache. It must be
+an absolute path.
+
+Clearing the cache is as easy as:
+
+    rm -rf /path/to/your/app/var/obj
+
+See L<the Mason docs|https://metacpan.org/dist/HTML-Mason/view/lib/HTML/Mason/Admin.pod#Object-Files>
+for more information on the object files and caching.
+
 =head1 SEE ALSO
 
 L<Dancer2>, L<HTML::Mason>.
